@@ -52,7 +52,7 @@ namespace
 
 Scene::Scene(struct Globals *_gbx)
   : 
-  network_creator(_gbx->networkdir),
+  // network_creator(_gbx->networkdir),
   output_buffer(_gbx->output_buffer_type, _gbx->rd_width, _gbx->rd_height)
 {
   m_gbx = _gbx;
@@ -134,7 +134,7 @@ void Scene::initScene(Globals *_gbx)
     m_accel.build(m_mesh_allocator, m_pipeline.get_context());
 
     // Load network
-    network_creator.createNetworkBuffers(&m_gbx->launch_params, m_buffer_allocator);
+    // network_creator.createNetworkBuffers(&m_gbx->launch_params, m_buffer_allocator);
 
     OPTIX_CHECK(optixInit()); // Need to initialize function table
     m_pipeline.set_device_context(m_context);

@@ -14,7 +14,7 @@
 
 #include <OIDN/include/OpenImageDenoise/oidn.hpp>
 
-#include "src/network/EvalNetwork.h"
+//#include "src/network/EvalNetwork.h"
 
 #include <misc/Globals.h>
 #include <Render/Lights/Lights.h>
@@ -209,7 +209,7 @@ private:
   float angle_with_south;
 
   // Misc
-  Network network_creator;
+  // Network network_creator;
 
   // Lights
   Lights lights;

@@ -447,14 +447,7 @@ function(OPTIX_add_sample_executable target_name_base target_name_var)
     # "${TORCH_LIBRARIES}"
     # ${CMAKE_SOURCE_DIR}/lib/tiny-cuda-nn/tiny-cuda-nn
     )
-  
-  set_property(TARGET ${target_name} PROPERTY CXX_STANDARD 20)
-
-  set_target_properties( ${target_name} PROPERTIES
-    CXX_STANDARD 20
-    COMPILE_DEFINITIONS
-    "OPTIX_SAMPLE_NAME_DEFINE=${target_name};OPTIX_SAMPLE_DIR_DEFINE=${target_name}" )
-
+    
 #### UNCOMMENT IF YOU RUN INTO MEMORY ISSUES ####
 
 # if (MSVC)

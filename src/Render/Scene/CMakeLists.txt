@@ -20,6 +20,6 @@ target_link_libraries(scene_lib
     sutil_7_sdk
     optics_lib
     OpenImageDenoise
-    network_lib
+    # network_lib
     glad
 )
