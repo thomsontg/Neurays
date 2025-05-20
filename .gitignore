@@ -1,10 +1,6 @@
 build/
-models/*/
-Network/
 Results/
 scripts/files/
-models/geom/*/
-models/env/hdri/
 .git/
 .vs/
 .vscode/

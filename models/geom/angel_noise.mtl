@@ -1,0 +1,6 @@
+# Blender MTL File: 'None'
+# Material Count: 1
+
+newmtl marble
+illum 19
+map_Kd tex.png

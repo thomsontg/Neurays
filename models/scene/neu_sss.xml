@@ -1,0 +1,14 @@
+<Scene>
+    <Files type="obj">
+        <Filename name="c:/thtg/tg/renderer/neural-rays/models/geom/bunny_arealight.obj"/>
+    </Files>
+    <EnvironmentFile name=""/>
+    <Camera>
+        <View filename="c:/thtg/tg/renderer/neural-rays/models/scene/neu_sss"/>
+        <Eye x="-0.57225895" y="2.9865637" z="6.1945415"/>
+        <LookAt x="-0.57225895" y="2.3236628" z="-7.0878873"/>
+        <Up x="0" y="0.99874175" z="-0.049845319"/>
+        <Constants FOVY="45" Aspect_Ratio="1" Cam_Constant="0.41421357"/>
+        <Frame width="500" height="500"/>
+    </Camera>
+</Scene>

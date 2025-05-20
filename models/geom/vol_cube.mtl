@@ -1,0 +1,38 @@
+# Blender MTL File: 'None'
+# Material Count: 2
+
+newmtl Material_in
+Ns 359.999993
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 13
+
+newmtl material_out
+Ns 359.999993
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 13
+
+
+newmtl BalticSeaWater
+illum 13
+
+newmtl WhiteGrapefruitJuice
+illum 13
+
+newmtl FakeOrangeJuice
+illum 13
+
+newmtl ColdBlueIce
+illum 13
+
+newmtl ketchup
+illum 13

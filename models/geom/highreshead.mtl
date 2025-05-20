@@ -1,0 +1,10 @@
+# Blender MTL File: 'None'
+# Material Count: 1
+
+newmtl skin1
+illum 13
+map_Kd lambertian_f.png
+map_bump NormalMap_f.png
+
+newmtl chocolatemilk
+illum 13

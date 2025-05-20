@@ -70,7 +70,7 @@ add_subdirectory(Render)
 # Our sutil library.  The rules to build it are found in the subdirectory.
 add_subdirectory(sutil)
 add_subdirectory(sh)
-# add_subdirectory(network)
+add_subdirectory(network)
 # add_subdirectory(gaussian)
 
 target_link_libraries( ${target_name}
@@ -81,7 +81,7 @@ target_link_libraries( ${target_name}
   GUI_lib
   SH_lib
   OpenImageDenoise
-  # network_lib
+  network_lib
   tinyxml2
   # assimp_lib
   # tetgen

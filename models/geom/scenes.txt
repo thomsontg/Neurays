@@ -1,0 +1,4 @@
+-bgc 0 0 0 -sh directional ../../models/bunny.obj
+-t 255 7 -sky 55.784 2.4 0 -sh directional ../../models/plane.obj ../../models/bunny.obj
+-bgc 0 0 0 -sh arealight ../../models/CornellBox.obj ../../models/CornellBlocks.obj
+-bgc 0 0 0 -sh arealight ../../models/CornellBox.obj ../../models/CornellLeftSphere.obj ../../models/CornellRightSphere.obj

@@ -14,7 +14,7 @@
 
 #include <OIDN/include/OpenImageDenoise/oidn.hpp>
 
-//#include "src/network/EvalNetwork.h"
+#include "src/network/EvalNetwork.h"
 
 #include <misc/Globals.h>
 #include <Render/Lights/Lights.h>
@@ -32,7 +32,7 @@ public:
   ~Scene();
 
   void render(sutil::CUDAOutputBuffer<uchar4> &output_buffer);
-  float3* denoise();
+  float3 *denoise();
 
   void initScene(Globals *_gbx);
 
@@ -58,7 +58,6 @@ public:
   void handleSunSkyUpdate(float &solar_time, float overcast);
   void handleLightUpdate() { update_light(); }
   void handleGeometryUpdate();
-
 
   // Window resize state
   bool resize_dirty;
@@ -209,7 +208,7 @@ private:
   float angle_with_south;
 
   // Misc
-  // Network network_creator;
+  Network network_creator;
 
   // Lights
   Lights lights;

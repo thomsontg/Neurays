@@ -51,9 +51,8 @@ namespace
 }
 
 Scene::Scene(struct Globals *_gbx)
-  : 
-  // network_creator(_gbx->networkdir),
-  output_buffer(_gbx->output_buffer_type, _gbx->rd_width, _gbx->rd_height)
+    : network_creator(_gbx->networkdir),
+      output_buffer(_gbx->output_buffer_type, _gbx->rd_width, _gbx->rd_height)
 {
   m_gbx = _gbx;
   filenames = m_gbx->filenames;
@@ -96,22 +95,21 @@ Scene::Scene(struct Globals *_gbx)
   lights.set_envfile(envfile);
   initScene(_gbx);
   // handleSunSkyUpdate(time_of_day, sun_sky.getOvercast());
-  
+
   initLight(m_gbx->get_light_direction(), m_gbx->emission, m_gbx->env_name);
-  
+
   if (m_gbx->use_sunsky)
   {
     get_light().initSunSky(m_gbx->ordinal_day, m_gbx->time_of_day, m_gbx->latitude,
-                                  m_gbx->turbidity, m_gbx->clouds, m_gbx->sky_angle, m_gbx->sky_up);
+                           m_gbx->turbidity, m_gbx->clouds, m_gbx->sky_angle, m_gbx->sky_up);
   }
 
-  if(!m_gbx->xml_loading)
+  if (!m_gbx->xml_loading)
   {
     m_gbx->trackball = new QuatTrackBall(camera.lookat(), length(camera.lookat() - camera.eye()), m_gbx->rd_width, m_gbx->rd_height);
     m_gbx->camera_changed = true;
     m_gbx->xml_loading = false;
   }
-
 }
 
 void Scene::initScene(Globals *_gbx)
@@ -134,7 +132,7 @@ void Scene::initScene(Globals *_gbx)
     m_accel.build(m_mesh_allocator, m_pipeline.get_context());
 
     // Load network
-    // network_creator.createNetworkBuffers(&m_gbx->launch_params, m_buffer_allocator);
+    network_creator.createNetworkBuffers(&m_gbx->launch_params, m_buffer_allocator);
 
     OPTIX_CHECK(optixInit()); // Need to initialize function table
     m_pipeline.set_device_context(m_context);
@@ -441,7 +439,7 @@ void Scene::handleResize(CUDAOutputBuffer<uchar4> &output_buffer, int32_t w, int
   CUDA_CHECK(cudaMalloc(
       reinterpret_cast<void **>(&m_gbx->launch_params.accum_buffer),
       width * height * sizeof(float4)));
-  
+
   m_pipeline.on_change(w, h);
 }
 
@@ -647,22 +645,22 @@ void Scene::loadObjs(std::vector<std::string> files)
       {
         string path;
         size_t idx = filename.find_last_of("/\\");
-        
+
         if (idx < filename.length())
         {
           path = filename.substr(0, idx + 1);
         }
         ImageBuffer img;
-        
+
         try
         {
           img = load_Image((path + mtl.diffuse_texname).c_str());
         }
-        catch(std::exception &e)
+        catch (std::exception &e)
         {
           std::cout << e.what() << std::endl;
         }
-        
+
         if (img.pixel_format != UNSIGNED_BYTE4)
           cerr << "Texture image with unknown pixel format: " << mtl.diffuse_texname << endl;
         else
@@ -678,20 +676,21 @@ void Scene::loadObjs(std::vector<std::string> files)
       {
         string path;
         size_t idx = filename.find_last_of("/\\");
-      
+
         if (idx < filename.length())
           path = filename.substr(0, idx + 1);
 
         ImageBuffer img;
-      
-        try{
+
+        try
+        {
           img = load_Image((path + mtl.bump_texname).c_str());
         }
-        catch(std::exception &e)
+        catch (std::exception &e)
         {
           std::cout << e.what() << std::endl;
         }
-      
+
         if (img.pixel_format != UNSIGNED_BYTE4)
           cerr << "Texture image with unknown pixel format: " << mtl.bump_texname << endl;
         else
@@ -701,26 +700,27 @@ void Scene::loadObjs(std::vector<std::string> files)
           m_sample_allocator.addSampler(cudaAddressModeWrap, cudaAddressModeWrap, cudaFilterModeLinear, m_tex_count);
           m_mtl.bump_map_tex = m_sample_allocator.getSampler(m_tex_count++);
         }
-      }      
-      
+      }
+
       if (!mtl.alpha_texname.empty())
       {
         string path;
         size_t idx = filename.find_last_of("/\\");
-      
+
         if (idx < filename.length())
           path = filename.substr(0, idx + 1);
 
         ImageBuffer img;
-      
-        try{
+
+        try
+        {
           img = load_Image((path + mtl.alpha_texname).c_str());
         }
-        catch(std::exception &e)
+        catch (std::exception &e)
         {
           std::cout << e.what() << std::endl;
         }
-      
+
         if (img.pixel_format != UNSIGNED_BYTE4)
           cerr << "Texture image with unknown pixel format: " << mtl.alpha_texname << endl;
         else
@@ -743,7 +743,7 @@ void Scene::loadObjs(std::vector<std::string> files)
       CUdeviceptr buffer;
       auto mesh = std::make_shared<sutil::MeshGroup>();
       m_mesh_allocator.addMesh(mesh);
-      
+
       if (std::find(obj_names.begin(), obj_names.end(), shape.name) == obj_names.end())
       {
         obj_names.push_back(shape.name);
@@ -753,7 +753,7 @@ void Scene::loadObjs(std::vector<std::string> files)
       {
         mesh->name = shape.name + std::to_string(count++);
       }
-      
+
       {
         BufferView<unsigned int> buffer_view;
         m_buffer_allocator.addBuffer(shape.mesh.indices.size() * sizeof(unsigned int), reinterpret_cast<const void *>(&shape.mesh.indices[0]));
@@ -805,10 +805,10 @@ void Scene::loadObjs(std::vector<std::string> files)
       cerr << "\t\tNum triangles: " << mesh->indices.back().count / 3 << endl;
       cerr << "\t\tMesh name    : " << mesh->material_name << endl;
       auto instance = std::make_shared<sutil::Instance>();
-      
+
       // Custom transforms
       instance->transforms = get_object_transform(filename);
-      
+
       instance->transform = sutil::Matrix4x4::compute_transform(instance->transforms);
 
       Surface surface;

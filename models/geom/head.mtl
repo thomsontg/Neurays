@@ -1,0 +1,7 @@
+# Blender 3.3.0 MTL File: 'None'
+# www.blender.org
+
+newmtl skin1
+map_Kd lambertian_f.png
+map_bump ex_normal_f.png
+illum 13
